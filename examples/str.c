@@ -5,10 +5,7 @@ DEFINE_BETTER_STRUCT(char, string);
 
 int main() {
     
-    string test = MA_GET_ARRAY(
-        string, 
-        "Hello, World!"
-    );
+    string test = MA_GET_ARRAY(string, "Hello, World!");
 
     // test.len = strlen(test.array); //small fix in case of char* variable
 
