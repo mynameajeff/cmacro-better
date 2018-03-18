@@ -292,6 +292,66 @@ name ma_trim_arr_##name(name* array,                   \
                                   length,              \
                                   true,                \
                                   true);               \
+}                                                      \
+                                                       \
+                                                       \
+name ma_return_expand_##name(name* array,              \
+                             value* new_array,         \
+                             value base_value,         \
+                             unsigned size,            \
+                             unsigned len) {           \
+                                                       \
+    for (unsigned i = 0; i < len; i++) {               \
+                                                       \
+        if (i >= array->len) {                         \
+            new_array[i] = base_value;                 \
+        }                                              \
+                                                       \
+        else {                                         \
+            new_array[i] = array->array[i];            \
+        }                                              \
+    }                                                  \
+                                                       \
+    ma_clean_arr_##name(array);                        \
+                                                       \
+    return ma_expanded_get_##name(new_array,           \
+                                  size,                \
+                                  len,                 \
+                                  true,                \
+                                  true);               \
+}                                                      \
+                                                       \
+                                                       \
+name ma_expand_arr_##name(name* array,                 \
+                          unsigned len,                \
+                          value base_value) {          \
+                                                       \
+    unsigned length = (array->len + len);              \
+    unsigned size   = sizeof(value) * length;          \
+                                                       \
+    value* new_array = malloc(size);                   \
+                                                       \
+    return ma_return_expand_##name(array,              \
+                                   new_array,          \
+                                   base_value,         \
+                                   size,               \
+                                   length);            \
+}                                                      \
+                                                       \
+                                                       \
+name ma_fit_to_arr_##name(name* array,                 \
+                          unsigned len,                \
+                          value base_value) {          \
+                                                       \
+    unsigned size = sizeof(value) * len;               \
+                                                       \
+    value* new_array = malloc(size);                   \
+                                                       \
+    return ma_return_expand_##name(array,              \
+                                   new_array,          \
+                                   base_value,         \
+                                   size,               \
+                                   len);               \
 }
 
 //~~~~~~~~~~~~~~~~~~~~~
