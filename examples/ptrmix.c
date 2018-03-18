@@ -1,5 +1,5 @@
 
-#include "ma_better.h"
+#include "../ma_better.h"
 
 DEFINE_BETTER_STRUCT(float*, floatptr_array);
 
