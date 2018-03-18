@@ -7,3 +7,5 @@ The goal was to take cfloat-better, and allow it to have the ability to serve no
 To this end, mimicking templating with the preprocessor in hindsight was a reasonable idea.
 
 This can be disputed.
+
+SIDENOTE: It was unintentionally also capable of working with structures, so to keep that compatibility, fa_get_sum was ommited.
