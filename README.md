@@ -12,7 +12,8 @@ SIDENOTE: It was unintentionally also capable of working with structures, so to 
 
 All other functions from cfloat-better have now been implemented in cmacro-better, and follow the pattern: 
  - <normal-function-name\><name\>(<normal args, but types will be those of value*\>);
- The exeption/s to this are:
+
+The exeption/s to this are:
   - ma_expanded_get_<name\>, where the _arr has been dropped in the name.
 
 name and value are parameters passed to the macro DEFINE_BETTER_STRUCT, which is the holy macro that creates the functions and structure that you'd be using.
