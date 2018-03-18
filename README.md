@@ -22,3 +22,6 @@ name and value are parameters passed to the macro DEFINE_BETTER_STRUCT, which is
 
  - value is the type, for example: an integer array would have this value as `int`, and a float array as `float`.
  - name is the name of the internal structure used in the lib, say `better_int`. it influences the names of the functions(as I have shown before), and repeating this wouldn't end well at compile time.
+
+END NOTE/S:
+  The supplied makefile compiles the general.c example, but due to the extreme simplicity of the makefile, modification to allow compilation of the other supplied examples would be rather easy.
