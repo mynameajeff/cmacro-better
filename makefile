@@ -1,6 +1,6 @@
 
-CFILES = example.c
-COUT = example
+CFILES = examples/general.c
+COUT = main_example
 CC = gcc
 
 all: 
