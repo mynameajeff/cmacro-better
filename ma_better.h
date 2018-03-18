@@ -15,7 +15,8 @@
     exit(1); \
 }
 
-#define MA_GET_ARRAY(name, array) ma_expanded_get_##name(array, sizeof(array), N_ITEMS(array), false, true)
+#define MA_GET_ARRAY(name, array) \
+ma_expanded_get_##name(array, sizeof(array), N_ITEMS(array), false, true)
 
 #define MA_DEFINE_BETTER_STRUCT(value, name)           \
                                                        \
