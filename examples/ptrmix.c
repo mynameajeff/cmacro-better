@@ -1,7 +1,7 @@
 
 #include "../ma_better.h"
 
-DEFINE_BETTER_STRUCT(float*, floatptr_array);
+MA_DEFINE_BETTER_STRUCT(float*, floatptr_array);
 
 int main() {
 
@@ -9,7 +9,7 @@ int main() {
         malloc(sizeof(float) * 3), 
         malloc(sizeof(float) * 3)
     };
-    
+
     for (unsigned i = 1; i <= 2; i++) {
         for (unsigned n = 1; n <= 3; n++) {
             array_normal[i-1][n-1] = n + i;
