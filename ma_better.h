@@ -224,6 +224,74 @@ name ma_split_arr_##name(name* array,                  \
                                   length,              \
                                   true,                \
                                   true);               \
+}                                                      \
+                                                       \
+                                                       \
+name ma_join_arr_##name(name* array_1,                 \
+                        name* array_2,                 \
+                        unsigned lor) {                \
+                                                       \
+    unsigned length = (array_1->len + array_2->len);   \
+    unsigned size   = sizeof(value) * length;          \
+                                                       \
+    value* new_array = malloc(size);                   \
+                                                       \
+    name *arr_1, *arr_2;                               \
+                                                       \
+    if (lor == 0) {                                    \
+                                                       \
+        arr_1 = array_2;                               \
+        arr_2 = array_1;                               \
+    }                                                  \
+                                                       \
+    else {                                             \
+                                                       \
+        arr_1 = array_1;                               \
+        arr_2 = array_2;                               \
+    }                                                  \
+                                                       \
+                                                       \
+    for (unsigned i = 0; i < arr_1->len; i++) {        \
+        new_array[i] = arr_1->array[i];                \
+    }                                                  \
+                                                       \
+    for (unsigned i = 0; i < arr_2->len; i++) {        \
+        new_array[i + arr_1->len] = arr_2->array[i];   \
+    }                                                  \
+                                                       \
+    ma_clean_arr_##name(array_1);                      \
+    ma_clean_arr_##name(array_2);                      \
+                                                       \
+    return ma_expanded_get_##name(new_array,           \
+                                      size,            \
+                                      length,          \
+                                      true,            \
+                                      true);           \
+}                                                      \
+                                                       \
+                                                       \
+name ma_trim_arr_##name(name* array,                   \
+                        unsigned len,                  \
+                        unsigned lor) {                \
+                                                       \
+    unsigned length = (array->len - len);              \
+    unsigned size   = sizeof(value) * length;          \
+                                                       \
+    value* new_array = malloc(size);                   \
+                                                       \
+    for (unsigned i = 0; i < length; i++) {            \
+        new_array[i] = array->array[                   \
+            (lor == 0) ? i + len : i                   \
+        ];                                             \
+    }                                                  \
+                                                       \
+    ma_clean_arr_##name(array);                        \
+                                                       \
+    return ma_expanded_get_##name(new_array,           \
+                                  size,                \
+                                  length,              \
+                                  true,                \
+                                  true);               \
 }
 
 //~~~~~~~~~~~~~~~~~~~~~
