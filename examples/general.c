@@ -20,9 +20,9 @@ void better_man_example();
 //~~~~~~~~~~~~~~~~~~~~~
 
 
-DEFINE_BETTER_STRUCT(float, better_float);
-DEFINE_BETTER_STRUCT(int,   better_int);
-DEFINE_BETTER_STRUCT(man,   better_man);
+MA_DEFINE_BETTER_STRUCT(float, better_float);
+MA_DEFINE_BETTER_STRUCT(int,   better_int);
+MA_DEFINE_BETTER_STRUCT(man,   better_man);
 
 
 int main() {
@@ -51,29 +51,29 @@ void better_float_example() {
     }
     printf("\n");
 
-    test = ma_reverse_arr_better_float(&test);
+    test = ma_reverse_better_float(&test);
 
     for (unsigned i = 0; i < test.len; i++) {
         printf("#%.1f ", ma_get_value_better_float(&test, i));
     }
     printf("\n");
 
-    test = ma_trim_arr_better_float(&test, 2, 1);
+    test = ma_trim_better_float(&test, 2, 1);
 
     for (unsigned i = 0; i < test.len; i++) {
         printf("#%.1f ", ma_get_value_better_float(&test, i));
     }
     printf("\n");
 
-    test = ma_expand_arr_better_float(&test, 10, 42.42);
+    test = ma_expand_better_float(&test, 10, 42.42);
 
     for (unsigned i = 0; i < test.len; i++) {
         printf("#%.1f ", ma_get_value_better_float(&test, i));
     }
     printf("\n");
 
-    test = ma_fit_to_arr_better_float(&test, 6, 24.24);
-    test = ma_fit_to_arr_better_float(&test, 8, 24.24);
+    test = ma_fit_to_better_float(&test, 6, 24.24);
+    test = ma_fit_to_better_float(&test, 8, 24.24);
 
     for (unsigned i = 0; i < test.len; i++) {
         printf("#%.1f ", ma_get_value_better_float(&test, i));
@@ -82,7 +82,7 @@ void better_float_example() {
     printf("\nLENGTH: %d\n", test.len);
     printf("SIZE-OF: %d\n", test.size_of);
 
-    ma_clean_arr_better_float(&test);
+    ma_clean_better_float(&test);
 }
 
 
@@ -121,7 +121,7 @@ void better_int_example() {
         array
     );
 
-    test_2 = ma_join_arr_better_int(&test_2, &test_3, 1);
+    test_2 = ma_join_better_int(&test_2, &test_3, 1);
 
     for (unsigned i = 0; i < test_2.len; i++) {
         printf("#%d ", ma_get_value_better_int(&test_2, i));
@@ -130,7 +130,7 @@ void better_int_example() {
     printf("\nLENGTH: %d\n", test_2.len);
     printf("SIZE-OF: %d\n", test_2.size_of);
 
-    ma_clean_arr_better_int(&test_2);
+    ma_clean_better_int(&test_2);
 }
 
 
@@ -165,7 +165,7 @@ void better_man_example() {
 
     printf("~~~~~~~~~~~~~~~~~~~~~~~~\n");
 
-    test_humans = ma_split_arr_better_man(&test_humans, 1, 1);
+    test_humans = ma_split_better_man(&test_humans, 1, 1);
 
     for (unsigned i = 0; i < test_humans.len; i++) {
         
@@ -180,5 +180,5 @@ void better_man_example() {
     printf("LENGTH: %d\n", test_humans.len);
     printf("SIZE-OF: %d\n", test_humans.size_of);
 
-    ma_clean_arr_better_man(&test_humans);
+    ma_clean_better_man(&test_humans);
 }
