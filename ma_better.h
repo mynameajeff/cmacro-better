@@ -17,7 +17,7 @@
 
 #define MA_GET_ARRAY(name, array) ma_expanded_get_##name(array, sizeof(array), N_ITEMS(array), false, true)
 
-#define DEFINE_BETTER_STRUCT(value, name)              \
+#define MA_DEFINE_BETTER_STRUCT(value, name)           \
                                                        \
 typedef struct {                                       \
                                                        \
@@ -32,7 +32,7 @@ typedef struct {                                       \
 } name;                                                \
                                                        \
                                                        \
-void ma_clean_arr_##name(name* array) {                \
+void ma_clean_##name(name* array) {                    \
                                                        \
     if (array->isMalloc && array->shouldFree) {        \
         free(array->array);                            \
@@ -142,7 +142,7 @@ name ma_del_value_##name(name* array,                  \
     }                                                  \
                                                        \
                                                        \
-    ma_clean_arr_##name(array);                        \
+    ma_clean_##name(array);                            \
                                                        \
     return ma_expanded_get_##name(new_array,           \
                                   size,                \
@@ -152,7 +152,7 @@ name ma_del_value_##name(name* array,                  \
 }                                                      \
                                                        \
                                                        \
-name ma_reverse_arr_##name(name* array) {              \
+name ma_reverse_##name(name* array) {                  \
                                                        \
     value* new_array = malloc(array->size_of);         \
                                                        \
@@ -162,7 +162,7 @@ name ma_reverse_arr_##name(name* array) {              \
         new_array[i++] = array->array[x--]             \
     );                                                 \
                                                        \
-    ma_clean_arr_##name(array);                        \
+    ma_clean_##name(array);                            \
                                                        \
     return ma_expanded_get_##name(new_array,           \
                                   array->size_of,      \
@@ -172,9 +172,9 @@ name ma_reverse_arr_##name(name* array) {              \
 }                                                      \
                                                        \
                                                        \
-name ma_split_arr_##name(name* array,                  \
-                         unsigned index,               \
-                         unsigned lor) {               \
+name ma_split_##name(name* array,                      \
+                     unsigned index,                   \
+                     unsigned lor) {                   \
                                                        \
     bool isLooping = true;                             \
     bool isCutting = false;                            \
@@ -216,7 +216,7 @@ name ma_split_arr_##name(name* array,                  \
     }                                                  \
                                                        \
                                                        \
-    ma_clean_arr_##name(array);                        \
+    ma_clean_##name(array);                            \
                                                        \
     return ma_expanded_get_##name(new_array,           \
                                   size,                \
@@ -226,9 +226,9 @@ name ma_split_arr_##name(name* array,                  \
 }                                                      \
                                                        \
                                                        \
-name ma_join_arr_##name(name* array_1,                 \
-                        name* array_2,                 \
-                        unsigned lor) {                \
+name ma_join_##name(name* array_1,                     \
+                    name* array_2,                     \
+                    unsigned lor) {                    \
                                                        \
     unsigned length = (array_1->len + array_2->len);   \
     unsigned size   = sizeof(value) * length;          \
@@ -258,20 +258,20 @@ name ma_join_arr_##name(name* array_1,                 \
         new_array[i + arr_1->len] = arr_2->array[i];   \
     }                                                  \
                                                        \
-    ma_clean_arr_##name(array_1);                      \
-    ma_clean_arr_##name(array_2);                      \
+    ma_clean_##name(array_1);                          \
+    ma_clean_##name(array_2);                          \
                                                        \
     return ma_expanded_get_##name(new_array,           \
-                                      size,            \
-                                      length,          \
-                                      true,            \
-                                      true);           \
+                                  size,                \
+                                  length,              \
+                                  true,                \
+                                  true);               \
 }                                                      \
                                                        \
                                                        \
-name ma_trim_arr_##name(name* array,                   \
-                        unsigned len,                  \
-                        unsigned lor) {                \
+name ma_trim_##name(name* array,                       \
+                    unsigned len,                      \
+                    unsigned lor) {                    \
                                                        \
     unsigned length = (array->len - len);              \
     unsigned size   = sizeof(value) * length;          \
@@ -284,7 +284,7 @@ name ma_trim_arr_##name(name* array,                   \
         ];                                             \
     }                                                  \
                                                        \
-    ma_clean_arr_##name(array);                        \
+    ma_clean_##name(array);                            \
                                                        \
     return ma_expanded_get_##name(new_array,           \
                                   size,                \
@@ -311,7 +311,7 @@ name ma_return_expand_##name(name* array,              \
         }                                              \
     }                                                  \
                                                        \
-    ma_clean_arr_##name(array);                        \
+    ma_clean_##name(array);                            \
                                                        \
     return ma_expanded_get_##name(new_array,           \
                                   size,                \
@@ -321,9 +321,9 @@ name ma_return_expand_##name(name* array,              \
 }                                                      \
                                                        \
                                                        \
-name ma_expand_arr_##name(name* array,                 \
-                          unsigned len,                \
-                          value base_value) {          \
+name ma_expand_##name(name* array,                     \
+                      unsigned len,                    \
+                      value base_value) {              \
                                                        \
     unsigned length = (array->len + len);              \
     unsigned size   = sizeof(value) * length;          \
@@ -338,9 +338,9 @@ name ma_expand_arr_##name(name* array,                 \
 }                                                      \
                                                        \
                                                        \
-name ma_fit_to_arr_##name(name* array,                 \
-                          unsigned len,                \
-                          value base_value) {          \
+name ma_fit_to_##name(name* array,                     \
+                      unsigned len,                    \
+                      value base_value) {              \
                                                        \
     unsigned size = sizeof(value) * len;               \
                                                        \
