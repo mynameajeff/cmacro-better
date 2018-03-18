@@ -1,5 +1,5 @@
 
-#include "ma_better.h"
+#include "../ma_better.h"
 
 MA_DEFINE_BETTER_STRUCT(char, string);
 
