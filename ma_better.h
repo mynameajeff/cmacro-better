@@ -109,6 +109,7 @@ void ma_swap_values_##name(name* array,                \
                                                        \
 }                                                      \
                                                        \
+                                                       \
 name ma_del_value_##name(name* array,                  \
                          unsigned index) {             \
                                                        \
