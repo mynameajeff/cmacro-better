@@ -94,6 +94,21 @@ value ma_get_value_##name(name* array,                 \
 }                                                      \
                                                        \
                                                        \
+void ma_swap_values_##name(name* array,                \
+                           unsigned index_base,        \
+                           unsigned index_sub) {       \
+                                                       \
+    value side_base = ma_get_value_##name(array,       \
+                                          index_base); \
+                                                       \
+    value side_sub  = ma_get_value_##name(array,       \
+                                          index_sub);  \
+                                                       \
+    ma_set_value_##name(array, index_base, side_sub);  \
+    ma_set_value_##name(array, index_sub, side_base);  \
+                                                       \
+}                                                      \
+                                                       \
 name ma_del_value_##name(name* array,                  \
                          unsigned index) {             \
                                                        \
@@ -108,7 +123,7 @@ name ma_del_value_##name(name* array,                  \
         ERROR_FAILED("allocate memory for array");     \
     }                                                  \
                                                        \
-    else if (l_index >  array->len) {                  \
+    else if (l_index > array->len) {                   \
                                                        \
         char buffer[32];                               \
                                                        \
@@ -157,11 +172,12 @@ name ma_reverse_##name(name* array) {                  \
                                                        \
     value* new_array = malloc(array->size_of);         \
                                                        \
-    for (                                              \
-        unsigned i = 0, x = (array->len - 1);          \
-        i < array->len;                                \
-        new_array[i++] = array->array[x--]             \
-    );                                                 \
+                                                       \
+    for (unsigned i = 0, x = (array->len - 1);         \
+         i < array->len; i++, x--) {                   \
+                                                       \
+        new_array[i] = array->array[x];                \
+    }                                                  \
                                                        \
     ma_clean_##name(array);                            \
                                                        \
