@@ -17,7 +17,7 @@ int main() {
 
     test = ma_reverse_string(&test);
 
-    //remove null terminator from beginning of str, ma_reverse_string fucks with ma_swap_values_string
+    //remove null terminator from beginning of str, ma_reverse_string fucks with ma_swap_values_string (not needed for char*)
     test = ma_del_value_string(&test, 0);
 
     show_string(&test);
